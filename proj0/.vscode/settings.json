@@ -1,0 +1,9 @@
+{
+    "java.project.sourcePaths": [
+        "game2048"
+    ],
+    "java.project.outputPath": "target/classes",
+    "java.project.referencedLibraries": [
+        "javalib/*.jar"
+    ]
+}
