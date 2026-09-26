@@ -113,6 +113,16 @@ public class Model extends Observable {
         // TODO: Modify this.board (and perhaps this.score) to account
         // for the tilt to the Side SIDE. If the board changed, set the
         // changed local variable to true.
+        for(int i = 0; i < board.size(); i++){
+            for(int j = board.size() - 2; j >= 0; j--){
+                Tile current = board.tile(i, j);
+                if(current == null){
+                    continue;
+                }
+                else if()
+            }
+        } 
+
 
         checkGameOver();
         if (changed) {
@@ -175,14 +185,33 @@ public class Model extends Observable {
         // TODO: Fill in this function.
         for(int i = 0; i < b.size(); i++){
             for(int j = 0; j < b.size(); j++){
-                if(b.tile(i, j) == null){
+                Tile current = b.tile(i, j);
+
+                // 只要有空格，就存在移动
+                if (current == null) {
                     return true;
                 }
-            
-            if(i > 0 && b.tile(i, j).value() == b.tile(i - 1, j).value() || j > 0 && b.tile(i, j).value() == b.tile(i, j - 1).value()){
-                return true;
+
+                // 检查相邻的第一个方向
+                if (i > 0) {
+                    Tile neighbor = b.tile(i - 1, j);
+
+                    if (neighbor != null
+                            && current.value() == neighbor.value()) {
+                        return true;
+                    }
+                }
+
+                // 检查相邻的第二个方向
+                if (j > 0) {
+                    Tile neighbor = b.tile(i, j - 1);
+
+                    if (neighbor != null
+                            && current.value() == neighbor.value()) {
+                        return true;
+                    }
+                } 
             }
-            } 
         }
         return false;
     }
