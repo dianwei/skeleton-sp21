@@ -5,7 +5,7 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 public class LinkedListDeque<T> implements deque<T>, Iterable<T> {
-    private class Node {
+    protected class Node {
         public T item;
         public Node prev;
         public Node next;
@@ -151,18 +151,19 @@ public class LinkedListDeque<T> implements deque<T>, Iterable<T> {
     }
 
     public T getRecursive(int index) {
-        private T getRecursiveHelper(Node node, int index) {
-            if (node == sentinel) {
-                return null;
-            }
-            if (index == 0) {
-                return node.item;
-            }
-            return getRecursiveHelper(node.next, index - 1);
-        }
         if (index < 0 || index >= size) {
             return null;
         }
         return getRecursiveHelper(sentinel.next, index);
+    }
+
+    private T getRecursiveHelper(Node node, int index) {
+        if (node == sentinel) {
+            return null;
+        }
+        if (index == 0) {
+            return node.item;
+        }
+        return getRecursiveHelper(node.next, index - 1);
     }
 }
