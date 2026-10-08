@@ -1,10 +1,9 @@
 package deque;
-import deque.deque;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class LinkedListDeque<T> implements deque<T>, Iterable<T> {
+public class LinkedListDeque<T> implements Deque<T>, Iterable<T> {
     protected class Node {
         public T item;
         public Node prev;
