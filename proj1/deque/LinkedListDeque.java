@@ -4,10 +4,10 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 public class LinkedListDeque<T> implements Deque<T>, Iterable<T> {
-    protected class Node {
-        public T item;
-        public Node prev;
-        public Node next;
+    private class Node {
+        private T item;
+        private Node prev;
+        private Node next;
 
         public Node(T i, Node p, Node n) {
             item = i;
@@ -41,18 +41,13 @@ public class LinkedListDeque<T> implements Deque<T>, Iterable<T> {
         size++;
     }
 
-    @Override
-    public boolean isEmpty() {
-        return size == 0;
-    }
-
    @Override
    public int size() {
          return size;
      }
     
-     @Override
-     public void printDeque() {
+    @Override
+    public void printDeque() {
         Node current = sentinel.next;
         while (current != sentinel) {
             System.out.print(current.item + " ");

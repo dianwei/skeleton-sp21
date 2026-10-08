@@ -10,7 +10,7 @@ public class ArrayDeque<T> implements Deque<T>, Iterable<T> {
     private int tail;
 
     public ArrayDeque() {
-       items = (T[]) new Object[8];
+        items = (T[]) new Object[8];
         size = 0;
         head = 0;
         tail = 0;
@@ -98,7 +98,8 @@ public class ArrayDeque<T> implements Deque<T>, Iterable<T> {
             return false;
         }
         for (int i = 0; i < size; i++) {
-            if (!items[(head + i) % items.length].equals(other.items[(other.head + i) % other.items.length])) {
+            if (!items[(head + i) % items.length].equals(
+                other.items[(other.head + i) % other.items.length])) {
                 return false;
             }
         }
