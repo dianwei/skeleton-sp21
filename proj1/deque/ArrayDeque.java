@@ -1,6 +1,7 @@
 package deque;
 
 import java.util.Iterator;
+import java.util.Objects;
 import java.util.NoSuchElementException;
 
 public class ArrayDeque<T> implements Deque<T>, Iterable<T> {
@@ -90,7 +91,7 @@ public class ArrayDeque<T> implements Deque<T>, Iterable<T> {
         if (this == obj) {
             return true;
         }
-        if (obj == null || getClass() != obj.getClass()) {
+        if (!(obj instanceof LinkedListDeque)) {
             return false;
         }
         ArrayDeque<?> other = (ArrayDeque<?>) obj;
@@ -98,10 +99,7 @@ public class ArrayDeque<T> implements Deque<T>, Iterable<T> {
             return false;
         }
         for (int i = 0; i < size; i++) {
-            if (!items[(head + i) % items.length].equals(
-                other.items[(other.head + i) % other.items.length])) {
-                return false;
-            }
+            if (!Objects.equals(get(i), other.get(i))) return false;
         }
         return true;
     }
@@ -119,7 +117,7 @@ public class ArrayDeque<T> implements Deque<T>, Iterable<T> {
     private class ArrayDequeIterator implements Iterator<T> {
         private int currentIndex;
 
-        public ArrayDequeIterator() {
+        ArrayDequeIterator() {
             currentIndex = 0;
         }
 

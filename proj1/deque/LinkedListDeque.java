@@ -1,6 +1,7 @@
 package deque;
 
 import java.util.Iterator;
+import java.util.Objects;
 import java.util.NoSuchElementException;
 
 public class LinkedListDeque<T> implements Deque<T>, Iterable<T> {
@@ -9,7 +10,7 @@ public class LinkedListDeque<T> implements Deque<T>, Iterable<T> {
         private Node prev;
         private Node next;
 
-        public Node(T i, Node p, Node n) {
+        Node(T i, Node p, Node n) {
             item = i;
             prev = p;
             next = n;
@@ -41,10 +42,10 @@ public class LinkedListDeque<T> implements Deque<T>, Iterable<T> {
         size++;
     }
 
-   @Override
-   public int size() {
-         return size;
-     }
+    @Override
+    public int size() {
+        return size;
+    }
     
     @Override
     public void printDeque() {
@@ -97,21 +98,15 @@ public class LinkedListDeque<T> implements Deque<T>, Iterable<T> {
         if (this == obj) {
             return true;
         }
-        if (obj == null || getClass() != obj.getClass()) {
+        if (!(obj instanceof LinkedListDeque)) {
             return false;
         }
         LinkedListDeque<?> other = (LinkedListDeque<?>) obj;
         if (size != other.size) {
             return false;
         }
-        Node currentThis = sentinel.next;
-        Node currentOther = (Node) other.sentinel.next;
-        while (currentThis != sentinel) {
-            if (!currentThis.item.equals(currentOther.item)) {
-                return false;
-            }
-            currentThis = currentThis.next;
-            currentOther = currentOther.next;
+        for (int i = 0; i < size; i++) {
+            if (!Objects.equals(get(i), other.get(i))) return false;
         }
         return true;
     }
@@ -124,7 +119,7 @@ public class LinkedListDeque<T> implements Deque<T>, Iterable<T> {
     private class LinkedListDequeIterator implements Iterator<T> {
         private Node current;
 
-        public LinkedListDequeIterator() {
+        LinkedListDequeIterator() {
             current = sentinel.next;
         }
 
